@@ -1,0 +1,28 @@
+As of 8/25/2013, The following steps will create an ecommerce Rails application using the latest stable version of Spree.
+ 
+1) cd railsprojects
+2) rvm use 1.9.3@spree --create
+3) gem install rails -v=3.2.14 --no-ri --no-rdoc
+4) rails new mystore -d mysql
+5) cd mystore
+ 
+6) Add the following to the Gemfile
+gem 'spree', '2.0.4'
+gem 'spree_gateway', :git => 'https://github.com/spree/spree_gateway.git', :branch => '2-0-stable'
+gem 'spree_auth_devise', :git => 'https://github.com/spree/spree_auth_devise.git', :branch => '2-0-stable'
+ 
+7) bundle install
+8) rake db:create
+9) cd ../
+10) spree install mystore
+11) cd mystore
+12) rails s -p 3000
+ 
+Add multiple store functionality:
+1) Add the following to Gemfile
+gem 'spree_multi_tenant', :git => 'git://github.com/stefansenk/spree_multi_tenant.git'
+ 
+2) bundle install
+3) rake spree_multi_tenant:install:migrations
+4) rake db:migrate
+5) Refer to docs for complete setup instructions(https://github.com/stefansenk/spree_multi_tenant).
